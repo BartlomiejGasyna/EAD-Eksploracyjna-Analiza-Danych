@@ -14,3 +14,9 @@
 # ignore vscode files in subdirectories
 **/.vscode
 
+**/__pychache__/
+
+# ignore all pandas files
+**/pandas/*
+
+Lab 01 - Pandas_files/
