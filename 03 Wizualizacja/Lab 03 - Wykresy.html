@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Lab 03 - Wykresy</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="Lab%2003%20-%20Wykresy_files/github-markdown.css">
+  <link rel="stylesheet" href="Lab%2003%20-%20Wykresy_files/custom.css">
+  <link rel="icon" type="image/x-icon" href="https://jug.dpieczynski.pl/lab-ead/_static/favicon.ico">
+  <script>
+  MathJax = {
+      tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+      fontCache: 'global'
+      }
+  };
+  </script>
+  <script src="Lab%2003%20-%20Wykresy_files/polyfill.min.js"></script>
+  <script id="MathJax-script" async="" src="Lab%2003%20-%20Wykresy_files/tex-mml-chtml.js"></script>
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style><link id="chromealerabat-link" rel="stylesheet" type="text/css" href="Lab%2003%20-%20Wykresy_files/content.css"><script src="Lab%2003%20-%20Wykresy_files/prompt.js"></script></head>
+<body>
+<main class="markdown-body">
+<header id="title-block-header">
+<h1 class="title">Lab 03 - Wykresy</h1>
+</header>
+<h1 id="lab-03---wykresy-w-python-matplotlib">Lab 03 - Wykresy w Python (<code>matplotlib</code>)</h1>
+<p><code>Matplotlib</code> jest najpopularniejszą na dzień dzisiejszy biblioteką do tworzenia wykresów dla języka programowania <code>Python</code>. Składnię poleceń <code>matplotlib</code> zaprojektowano tak, aby przypominała tę znaną z <code>MATLAB</code>. <code>Matplotlib</code> jest w pełni kompatybilny z biblioteką numeryczną <code>NumPy</code> oraz <code>Pandas</code>.</p>
+<p>W wcześniejszej części kursu korzystaliśmy z metody <code>plot()</code> obiektu typu <code>DataFrame</code>, która korzysta bezpośrednio z <code>matplotlib</code> i pozwala automatycznie tworzyć podstawowe i dobrze wyglądające wykresy. Jednakże, <code>matplotlib</code>
+ pozwala na konfigurowanie w zasadzie każdego pojedynczego elementu 
+wchodzącego w skład rysowanego obrazu, a dane do niego dostarczone 
+niekoniecznie muszą pochodzić z <code>Pandas</code> - może to być macierz <code>NumPy</code> lub zwykła <code>Pythonowa</code> lista.</p>
+<p>Pełna dokumentacja <code>matplotlib</code> wraz z przykładami i tutorialami dostępna jest na stronie projektu: <a href="https://matplotlib.org/">https://matplotlib.org/</a></p>
+<p>Aby zacząć korzystać z <code>matplotlib</code> należy załączyć w odpowiedni sposób bibliotekę, zwyczajowo pod aliasem <code>plt</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<p>Pamiętaj, że żądany wykres nie wyświetli się dopóki nie wywołasz komendy:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>plt.show()</span></code></pre></div>
+<p>wszystkie instrukcje <code>matplotlib</code> wywołane przed rysują wykres w tle. Wywołanie <code>show()</code> zatrzyma wykonywanie skryptu, aż do momentu zamknięcia okna z wykresem.</p>
+<h2 id="figure-oraz-axes"><em>Figure</em> oraz <em>Axes</em></h2>
+<p>W <code>matplotlib</code> istnieją dwa podstawowe pojęcia reprezentujące składowe rysowanego wykresu:</p>
+<ul>
+<li><p><em>Figure</em> - cały obraz wykresu (okno), na którym rysowane są poszczególne wykresy, legendy, opisy itd. <em>Figure</em> możemy traktować jako płótno na którym będziemy rysować. Do danego <em>figure</em> może być przypisane wiele <em>axes</em>.</p></li>
+<li><p><em>Axes</em> - reprezentuje osie danego wykresu i umieszczone w przestrzeni rysowania <em>figure</em>. Dany <em>figure</em> może zawierać wiele <em>axes</em> (często jest to tylko jeden zestaw osi rysowany w danym oknie), natomiast <em>axes</em> może być przypisane tylko do jednego <em>figure</em>.</p></li>
+</ul>
+<p>Aby utworzyć pusty <em>figure</em>, bez <em>axes</em> należy wywołać:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>fig <span class="op">=</span> plt.figure()</span></code></pre></div>
+<p>gdzie zmienna <code>fig</code> będzie reprezentować obiekt całego okna wykresu.</p>
+<h3 id="subplot"><em>Subplot</em></h3>
+<p>W <code>matplotlib</code> przez pojęcie <em>subplot</em> rozumiany jest automatycznie utworzone <em>axes</em> w obrębie <em>figure</em>. Korzystanie z <em>subplot</em> ułatwia tworzenie wykresów, gdyż <em>axes</em> rozmieszczane są automatycznie w obrębie okna. Utworzenie najprostszego <em>figure</em> z pojedynczym umieszczonym na całym obszarze <em>axes</em> wykonujemy:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>fig, ax <span class="op">=</span> plt.subplots()</span></code></pre></div>
+<p>gdzie <code>fig</code> jest oknem wykresu, a <code>ax</code> reprezentuje osie rysowania wykresu (<em>axes</em>). Możliwe jest także szybkie utworzenie nowego <em>figure</em> z zdefiniowaną siatką wielu obszarów rysowania (<em>axes</em>), np.:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>)</span></code></pre></div>
+<p>gdzie <code>axs</code> jest macierzą obszarów rysowania (<em>axes</em>) w ramach zwróconego <code>fig</code>.</p>
+<p>Pamiętaj, że wszystkie wykresy rysowane są w ramach <em>axes</em>, a nie w ramach <em>figure</em>. Wszystkie metody rysujące (np. <code>plot</code>, <code>scatter</code>) i większość metod modyfikujących wykres wywołujemy w ramach obiektu reprezentującego osie (obszar rysowania).</p>
+<h2 id="plot"><code>plot</code></h2>
+<p>Podstawowym i najczęściej wykorzystywanym wykresem jest <code>plot</code> (<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html</a>), który wyświetla wartości <code>y</code> względem wartości <code>x</code> jako linie lub jako punkty. Wielokrotne wywołanie funkcji rysującej w ramach danego <em>axes</em> powoduje wykreślenie wielu wykresów jeden na drugim:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a>ax.plot(x, x)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>ax.plot(x, x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>ax.plot(x, x<span class="op">**</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="Lab%2003%20-%20Wykresy_files/01_plot.svg" alt="01_plot"></p>
+<p>Jako pierwszy parametr podajemy wartości osi odciętych (<em>x</em>), jako drugi parametr osi rzędnych (<em>y</em>).</p>
+<p>Często wykorzystywanym trzecim, nieobowiązkowym, parametrem jest ciąg
+ formatujący wygląd wykresu, określa rodzaj markera, rodzaj linii oraz 
+kolor. Format ciągu jest następujący <code>'[marker][linia][kolor]'</code>, pola nie są obowiązkowe, można wyspecyfikować tylko wybrane. Wybrane ciągi formatujące:</p>
+<ul>
+<li>marker:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Znak</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>'.'</code></td>
+<td>punkt</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>'o'</code></td>
+<td>kółko</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>'^'</code></td>
+<td>trójkąt</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>'*'</code></td>
+<td>gwizdka</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>'x'</code></td>
+<td>krzyżyk</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>linia</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Znak</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>'-'</code></td>
+<td>linia ciągła</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>'--'</code></td>
+<td>linia przerywana</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>'-.'</code></td>
+<td>linia przerywana, kropkowana</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>':'</code></td>
+<td>linia kropkowana</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>kolor</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Znak</th>
+<th>Opis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>'b'</code></td>
+<td>niebieski</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>'g'</code></td>
+<td>zielony</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>'r'</code></td>
+<td>czerwony</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>'c'</code></td>
+<td>cyjan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>'m'</code></td>
+<td>magenta</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>'y'</code></td>
+<td>żółty</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>'k'</code></td>
+<td>czarny</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>'w'</code></td>
+<td>biały</td>
+</tr>
+</tbody>
+</table>
+<p>Przykładowo:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>axs[<span class="dv">0</span>][<span class="dv">0</span>].plot(x, np.random.random(<span class="bu">len</span>(x)), <span class="st">'or'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>axs[<span class="dv">0</span>][<span class="dv">1</span>].plot(x, np.random.random(<span class="bu">len</span>(x)), <span class="st">'x--b'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a>axs[<span class="dv">1</span>][<span class="dv">0</span>].plot(x, np.random.random(<span class="bu">len</span>(x)), <span class="st">':k'</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>axs[<span class="dv">1</span>][<span class="dv">1</span>].plot(x, np.random.random(<span class="bu">len</span>(x)), <span class="st">'*-.'</span>)</span></code></pre></div>
+<p><img src="Lab%2003%20-%20Wykresy_files/02_plot_fmt.svg" alt="02_plot_fmt"></p>
+<p>Pełną listę modyfikatorów można znaleźć w dokumentacji metody <code>plot</code>: <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html</a></p>
+<hr>
+<h4 id="-zadanie-1-">🔥 Zadanie 1 🔥</h4>
+<p>Funkcja gęstości prawdopodobieństwa rozkładu normalnego ze średnią μ i odchyleniem standardowym σ dana jest wzorem:</p>
+<p><img src="Lab%2003%20-%20Wykresy_files/03_gauss_equation.svg" alt="03_gauss_equation">,</p>
+<p>co możemy zapisać w Python jako:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>f <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>(std_dev<span class="op">*</span>np.sqrt(np.pi)))<span class="op">*</span>np.exp((<span class="op">-</span>(x<span class="op">-</span>mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>std_dev))</span></code></pre></div>
+<p>Korzystając z <code>matplotlib</code>, wygeneruj poniższy wykres:</p>
+<p><img src="Lab%2003%20-%20Wykresy_files/04_gauss_plot.svg" alt="04_gauss_plot">,</p>
+<hr>
+<h2 id="opis-wykresu">Opis wykresu</h2>
+<p>Każdy wykres aby być czytelny musi zostać dobrze opisany. Poniżej przedstawiono część metod dla <em>axes</em>, które pozwalają na łatwą modyfikację i opis zawartości wykresu.</p>
+<h3 id="tytuł">Tytuł</h3>
+<p>Do ustawienia tytułu pojedynczego wykresy (<em>axes</em>) korzystamy z metody <code>Axes.set_title</code>, np.:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>ax.set_title(<span class="st">'Rozkład Gaussa'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span></code></pre></div>
+<p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html</a></p>
+<p>W przypadku umieszczenia wielu <em>axes</em>, w jednym <em>figure</em>, może istnieć konieczność ustawienia głównego tytułu, za pomocą metody wykonywanej dla <em>figure</em> <code>suptitle</code>, np.:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>fig.suptitle(<span class="st">'TYTUŁ'</span>)</span></code></pre></div>
+<p><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.suptitle.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.suptitle.html</a></p>
+<p>uzyskując następujący efekt:</p>
+<p><img src="Lab%2003%20-%20Wykresy_files/05_suptitle.svg" alt="05_suptitle"></p>
+<h3 id="opisy-osi">Opisy osi</h3>
+<p>Opisy osi ustawiamy korzystając z:</p>
+<ul>
+<li><code>Axes.set_xlabel</code> - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html</a></li>
+<li><code>Axes.set_ylabel</code> - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html</a></li>
+</ul>
+<h3 id="legenda">Legenda</h3>
+<p>W celu umieszczenia na danym wykresie (<em>axes</em>) legendy opisujące poszczególne linie wykresu korzystamy z metody <code>Axes.legend</code>, gdzie jako parametr podajemy listę napisów, np.:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>ax.legend([<span class="st">'Opis 1'</span>, <span class="st">'Opis 2'</span>, <span class="st">'Opis 3'</span>])</span></code></pre></div>
+<p>Legenda jest w pełni konfigurowalna, pełną listę opcji znajdziemy w dokumentacji: <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html</a></p>
+<p>Warto zwrócić uwagę na parametr <code>loc</code> pozwalający umieścić legendę w innej lokalizacji, niż ta wygenerowana automatycznie. Parametr <code>loc</code> przyjmuje następujące wartości:</p>
+<ul>
+<li><code>'best'</code></li>
+<li><code>'upper right'</code></li>
+<li><code>'upper left'</code></li>
+<li><code>'lower left'</code></li>
+<li><code>'lower right'</code></li>
+<li><code>'right'</code></li>
+<li><code>'center left'</code></li>
+<li><code>'center right'</code></li>
+<li><code>'lower center'</code></li>
+<li><code>'upper center'</code></li>
+<li><code>'center'</code></li>
+</ul>
+<h3 id="siatka">Siatka</h3>
+<p>Do załączenia siatki na wykresie używamy metody <code>Axes.grid</code>: <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.grid.html</a>. Warto zwrócić uwagę, że w przypadku bardziej zaawansowanych scenariuszy można wykorzystać dwa poziomy gęstości siatki: <em>major</em> (główna) i <em>minor</em> (pomocnicza)</p>
+<h3 id="zakresy-osi">Zakresy osi</h3>
+<p>Istnieje możliwość ustawienia zakresu osi. Korzystamy z:</p>
+<ul>
+<li><code>Axes.set_xlim</code> - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlim.html</a></li>
+<li><code>Axes.set_ylim</code> - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylim.html</a></li>
+</ul>
+<p>Często wykorzystujemy tę możliwość, gdy chcemy ograniczyć zakres 
+aktualnego wyświetlania wykresu, lub kiedy automatycznie wygenerowany 
+zakres nie jest satysfakcjonujący. Zwróć uwagę, że wykres rozkładu 
+prawdopodobieństwa wykonany w ramach wcześniejszego zadania kończy się 
+na około 0.58, przestawienie zakresu wyświetlania na &lt;0, 1&gt; 
+zwiększy czytelność prezentowanych danych:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>ax.set_ylim(<span class="dv">0</span>, <span class="dv">1</span>)</span></code></pre></div>
+<h3 id="etykiety-osi">Etykiety osi</h3>
+<p>Zmiana etykiet osi może być konieczna gdy chcemy na przykład 
+zwiększyć lub zmniejszyć liczebność wyświetlanych etykiet (ich gęstość),
+ lub gdy automatycznie wygenerowane etykiety nie spełniają naszych 
+oczekiwań. Korzystamy z:</p>
+<ul>
+<li><code>Axes.set_xticks</code> - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticks.html</a></li>
+<li><code>Axes.set_yticks</code> - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_yticks.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_yticks.html</a></li>
+</ul>
+<p>W przypadku wykresu rozkładu prawdopodobieństwa z wcześniejszego 
+zadania etykiety osi X zostały wygenerowane w zakresie &lt;-4, 4&gt;. 
+Ponieważ dane wejściowe dla osi X są z zakresu &lt;-5, 5) lepszą 
+czytelność uzyskamy ustawiając taki właśnie zakres:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a>ax.set_xticks(np.arange(<span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">1</span>))</span></code></pre></div>
+<p>Metody ustawiające etykiety osi posiadają parametr <code>minor</code> domyślnie ustawiony na <code>False</code>, przekazując do powyższych metod wartość parametru <code>True</code> zamiast ustawiać główne etykiety osi, ustawiamy etykiety pomocnicze, np.:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a>ax.set_xticks(np.arange(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.5</span>), minor<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>Różnicę pomiędzy etykietami głównymi, a pomocniczymi przedstawiono na poniższym rysunku:</p>
+<p><img src="Lab%2003%20-%20Wykresy_files/06_major_minor_ticks.svg" alt="06_major_minor_ticks"></p>
+<p>Wygląd etykiet możemy modyfikować korzystając z metody <code>Axes.tick_params</code> - <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.tick_params.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.tick_params.html</a>, możliwa jest na przykład zmiana orientacji, koloru, czy wielkości wygenerowanych etykiet.</p>
+<hr>
+<h4 id="-zadanie-2-">🔥 Zadanie 2 🔥</h4>
+<p>Korzystając z powyższych instrukcji zmodyfikuj wykres z poprzedniego zadania, tak aby nadać mu następujący wygląd:</p>
+<p><img src="Lab%2003%20-%20Wykresy_files/07_gauss_plot_formated.svg" alt="07_gauss_plot_formated"></p>
+<hr>
+<!-- ## `Scatter`
+
+`Scatter` (<https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html>) jest rodzajem wykresu, zbliżonym do `plot`, z tą różnicą że w jego przypadku mamy możliwość zdefiniowania rozmiaru i koloru każdego z punktu. Otrzymujemy w ten sposób trzeci wymiar informacji prezentowany na 2-wymiarowym wykresie. -->
+
+<h2 id="bar"><code>bar</code></h2>
+<p><code>bar</code> (<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.bar.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.bar.html</a>) pozwala utworzyć wykres słupkowy. Każdy słupek umieszczany jest w punkcie określony listą/macierzą <code>x</code>, posiada wysokość i szerokość określoną przez <code>height</code> i <code>width</code>. Np.:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a>values <span class="op">=</span> [<span class="dv">30</span>, <span class="dv">12</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">45</span>, <span class="dv">2</span>]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(values))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>width <span class="op">=</span> <span class="fl">0.8</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a>ax.bar(x, values, width)</span></code></pre></div>
+<p><img src="Lab%2003%20-%20Wykresy_files/08_bar_single.svg" alt="08_bar_single"></p>
+<h3 id="grupowanie-wykresów-słupkowych">Grupowanie wykresów słupkowych</h3>
+<p>W bardzo prosty sposób możemy na jednym wykresie umieścić wiele 
+wykresów słupkowych, które reprezentować będą dodatkowy, trzeci wymiar 
+informacji na naszym wykresie. Przygotowując taki wykres należy zwrócić 
+uwagę, na rozmieszczenie słupków w osi <code>x</code>, musimy wziąć pod uwagę szerokość rysowanego słupka i odpowiednio przesunąć punkt jego rysowania, np.:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true"></a>values1 <span class="op">=</span> [<span class="dv">30</span>, <span class="dv">12</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">45</span>, <span class="dv">2</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true"></a>values2 <span class="op">=</span> [<span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">12</span>, <span class="dv">80</span>, <span class="dv">2</span>, <span class="dv">33</span>, <span class="dv">2</span>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true"></a>x <span class="op">=</span> np.arange(<span class="bu">len</span>(values1))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true"></a>width <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true"></a>ax.bar(x<span class="op">-</span>width<span class="op">/</span><span class="dv">2</span>, values1, width, label<span class="op">=</span><span class="st">'Value 1'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true"></a>ax.bar(x<span class="op">+</span>width<span class="op">/</span><span class="dv">2</span>, values2, width, label<span class="op">=</span><span class="st">'Value 2'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true"></a>ax.legend()</span></code></pre></div>
+<p><img src="Lab%2003%20-%20Wykresy_files/09_bar_grouped.svg" alt="09_bar_grouped"></p>
+<h2 id="tekstowe-etykiety-osi">Tekstowe etykiety osi</h2>
+<p><code>matplotlib</code> daje możliwość nadpisania liczbowych etykiet 
+za pomocą ciągów znaków, tak aby wprowadzić bardziej czytelny opis. 
+Szczególnie sprawdza się to w połączeniu z wykresami słupkowymi. Do 
+utworzenia opisów tekstowych służy metoda <code>Axes.set_xticklabels</code> (<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html</a>) i <code>Axes.set_yticklabels</code> (<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_yticklabels.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_yticklabels.html</a>).</p>
+<p><strong>UWAGA:</strong> <code>Axes.set_xticklabels</code> powinna zostać zawsze poprzedzona wywołaniem metody <code>Axes.set_xticks</code>, która ustali rozmieszczenie etykiet, w przeciwnym wypadku opisy mogą trafić w nieokreślone miejsce na osi <code>x</code>. Podobnie w przypadku <code>Axes.set_yticklabels</code>.</p>
+<p>Przykładowa modyfikacja wykresu z przedstawionego wyżej:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a>labels <span class="op">=</span> [<span class="st">'Group: '</span> <span class="op">+</span> <span class="bu">str</span>(i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(values1))]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>ax.set_xticks(x)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>ax.set_xticklabels(labels)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true"></a>ax.tick_params(axis<span class="op">=</span><span class="st">'x'</span>, labelrotation<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div>
+<p><img src="Lab%2003%20-%20Wykresy_files/10_bar_textlabels.svg" alt="10_bar_textlabels"></p>
+<hr>
+<h4 id="-zadanie-3-">🔥 Zadanie 3 🔥</h4>
+<p>Dany jest plik w formacie JSON, zamierający informacje o procencie 
+osób, które przeżyły raka w populacji USA (324 mln) według płci i wieku w
+ 2016 roku: <a href="https://jug.dpieczynski.pl/lab-ead/_resources/lab_03/cancer_survival_in_us.json">cancer_survival_in_us.json</a> (źródło: <a href="https://cebp.aacrjournals.org/content/25/7/1029">https://cebp.aacrjournals.org/content/25/7/1029</a>).</p>
+<p>Korzystając z wczytanych danych wygeneruj poniższy wykres:</p>
+<p><img src="Lab%2003%20-%20Wykresy_files/11_assignment_bars.svg" alt="11_assignment_bars"></p>
+<p><strong>PODPOWIEDŹ:</strong> w przypadku problemu z siatką rysowaną na wykresie, użyj polecenia: <code>ax.set_axisbelow(True)</code>.</p>
+<hr>
+<h2 id="errorbar"><code>errorbar</code></h2>
+<p><code>errorbar</code> (<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.errorbar.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.errorbar.html</a>)
+ pozwala w bardzo prosty sposób wygenerować paski błędów, które często 
+wykorzystywane są do prezentacji niepewności pomiarowej, 
+odchylenia/wariancji przedstawionych na wykresie danych. <code>errorbar</code> jest niezależnym wykresem i można go stosować z każdym innym wykresem, w tym z <code>plot</code> i <code>bar</code>.</p>
+<p>Jako parametry <code>errorbar</code> przyjmuje wektory położeń <code>x</code> i <code>y</code> znaczników, oraz ich rozmiar w kierunku osi x i y: <code>xerr</code> oraz <code>yerr</code>.
+ Pominięcie jedno z parametrów rozmiaru znacznika spowoduje wykreślenie 
+pasków błędów tylko w jednej osi. Zależnie od formatu przekazanych 
+parametrów <code>xerr</code> i <code>yerr</code> paski błędów będą przyjmować następujące konfiguracje:</p>
+<ul>
+<li>skalar - symetryczne wartości +/- takie same dla wszystkich punktów,</li>
+<li>wektor długości N - symetryczne wartości +/-,</li>
+<li>macierz 2xN - oddzielne wartości + i - dla wszystkich punktów,</li>
+<li>brak - brak paska błędu.</li>
+</ul>
+<p>Do formatowania wyglądu <code>errorbar</code> wykorzystywany jest parametr <code>fmt</code>, przyjmuje on taki sam string formatujący jak funkcja <code>plot</code>. Warto zwrócić uwagę na parametr <code>capsize</code>, którego ustawienie spowoduje wygenerowanie charakterystycznych dla pasków błędów "daszków". Np.:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a>y_sin <span class="op">=</span> np.sin(x)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>y_cos <span class="op">=</span> np.cos(x)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>axs[<span class="dv">0</span>].plot(x, y_sin)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a>axs[<span class="dv">0</span>].errorbar(x, y_sin, yerr<span class="op">=</span><span class="fl">0.5</span>, fmt<span class="op">=</span><span class="st">'.k'</span>, capsize<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a>axs[<span class="dv">1</span>].plot(x, y_cos)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a>axs[<span class="dv">1</span>].errorbar(x, y_cos, xerr<span class="op">=</span><span class="fl">0.2</span>, yerr<span class="op">=</span>np.random.random(<span class="bu">len</span>(x)), fmt<span class="op">=</span><span class="st">'.r'</span>, capsize<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Lab%2003%20-%20Wykresy_files/12_errorbar.svg" alt="12_errorbar"></p>
+<hr>
+<h4 id="-zadanie-4-">🔥 Zadanie 4 🔥</h4>
+<p>Do wykresu słupkowego z poprzedniego zadania dodaj paski błędów, 
+zarówno dla wykresu reprezentującego mężczyzn, jak i kobiety. Pamiętaj, 
+że w przypadku tego wykresu błąd może występować tylko w osi y. Wartości
+ błędów wylosuj. Przykład formatowania:</p>
+<p><img src="Lab%2003%20-%20Wykresy_files/13_assignment_errorbar.svg" alt="13_assignment_errorbar"></p>
+<hr>
+<h2 id="hist"><code>hist</code></h2>
+<p>Funkcja <code>hist</code> (<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html</a>)
+ automatycznie, bez pisania dodatkowego kodu, oblicza histogram danych 
+wejściowych i go wykreśla. Jako parametr podajemy dane wejściowe <code>x</code>, oraz określamy liczebność zakresów <code>bins</code>. <code>bins</code> może być także wektorem, jeżeli chcemy ręcznie określić zakresy. Ustawienie parametru <code>density</code> na <code>True</code> powoduje wykreślenie histogramu gęstości prawdopodobieństwa. Przykładowo:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>x1 <span class="op">=</span> np.random.randn(<span class="dv">10000</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a>x2 <span class="op">=</span> np.random.rand(<span class="dv">10000</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a>axs[<span class="dv">0</span>].hist(x1, <span class="dv">20</span>, density<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'g'</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a>axs[<span class="dv">1</span>].hist(x2, <span class="dv">20</span>, density<span class="op">=</span><span class="va">True</span>, facecolor<span class="op">=</span><span class="st">'r'</span>)</span></code></pre></div>
+<p><img src="Lab%2003%20-%20Wykresy_files/14_hist.svg" alt="14_hist"></p>
+<h4 id="-zadanie-5-">🔥 Zadanie 5 🔥</h4>
+<p>Wczytaj plik: <a href="https://chmura.put.poznan.pl/s/TSaazB8DHn5TIEi">wyniki głosowania w wyborach prezydenckich w Rosji 2020</a></p>
+<ol>
+<li>Stwórz w wczytanym dataframe nową kolumnę zawierająca względną 
+liczbę głosów za. Jest to iloraz wartości liczby głosów za (kolumna <code>yes</code>) do liczby głosów oddanych (kolumna <code>given</code>)</li>
+<li>Wyświetl histogram względnej liczby głosów za dla domyślnych ustawień</li>
+<li>Zmień liczbę binów histogramu na 100. Czy możesz zauważyć jakieś anomalie?</li>
+</ol>
+<hr>
+<p>Autorzy: <em>Tomasz Mańkowski, Piotr Kaczmarek</em></p>
+</main>
+
+
+</body></html>
